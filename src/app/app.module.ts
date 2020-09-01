@@ -59,6 +59,15 @@ import { LocationsComponent } from './components/admin-components/locations/loca
 import { PermissionsComponent } from './components/admin-components/permissions/permissions.component';
 import { RolesClaimsComponent } from './components/admin-components/roles-claims/roles-claims.component';
 
+import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+import { AuthenticationService } from './services/authentication.service';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,7 +125,8 @@ import { RolesClaimsComponent } from './components/admin-components/roles-claims
     NgxPrintModule,
     ClipboardModule,
     LayoutModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),AngularFireAuthModule,AngularFirestoreModule,AngularFireFunctionsModule,
   ],
   providers: [
     ServiceRegister,
@@ -124,7 +134,10 @@ import { RolesClaimsComponent } from './components/admin-components/roles-claims
     UIService,
     DataService,
     LoaderService,
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    { provide: REGION, useValue: 'us-central1', providers: [AuthenticationService] }
+
+
   ],
   bootstrap: [AppComponent],
   exports: [LoginComponent, RouterModule],

@@ -8,6 +8,7 @@ import { UIService } from "../../shared/ui.service";
 import { DataService } from "../../services/data.service";
 import { Login } from "../../shared/interfaces/login";
 import { LoginBottomsheetComponent } from "../login-bottomsheet/login-bottomsheet.component";
+import { AuthenticationService } from "../../services/authentication.service";
 
 @Component({
   selector: "app-login",
@@ -40,39 +41,24 @@ export class LoginComponent implements OnInit {
 
   constructor(
     // private fb: FormBuilder,
-    public authService: AuthService,
+    public authenticationService: AuthenticationService,
     private uiService: UIService,
-    private dataService: DataService
+    private dataService: DataService,
+     private bottomSheet: MatBottomSheet
   ) {
-    this.authService.logout();
+    this.authenticationService.logout();
   }
 
   ngOnInit() {
-    // this.form = this.fb.group({
-    //// userName: ['', Validators.required],
-    // password: ['', Validators.required]
-    // });
-    //this.sidebarService.hide();
-    //   this.uiService.sideNavIsOpen=false;
-    console.log("Init");
-  }
+ }
 
   ngAfterViewInit() {
-    // doing something with my ViewChild
-    // this.sidebarService.hide();
   }
-
-  // isFieldInvalid(field: string) {
-  //   return (
-  //     (!this.form.get(field).valid && this.form.get(field).touched) ||
-  //     (this.form.get(field).untouched && this.formSubmitAttempt)
-  //   );
-  // }
 
   public initializeFormGroup() {
     this.loginForm.setValue({
       $key: null,
-      username: "",
+      email: "",
       password: ""
     });
   }
@@ -81,24 +67,27 @@ export class LoginComponent implements OnInit {
     console.log(form.valid);
 
     if (form.valid) {
-   
-      console.log(this.login);
 
+    this.authenticationService.signIn(this.login);
+  
+      /*
+         console.log(this.login);
       this.authService.loginProcess(this.login).subscribe(
         result => {
           console.log("success", result);
         },
         error => console.log("error", error)
       );
-    }
-
+  
+    */
+  }
 
   }
 
 
 
   openBottomSheet(): void {
-    this._bottomSheet.open(LoginBottomsheetComponent);
+    this.bottomSheet.open(LoginBottomsheetComponent);
   }
 
 

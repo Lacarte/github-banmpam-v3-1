@@ -5,8 +5,16 @@
 export const environment = {
   production: false,
   apiUrl:"https://en3sl760g2l8asb.m.pipedream.net",
-
-  mode: 'Local'
+  mode: 'Local',
+  firebaseConfig: {
+    apiKey: "AIzaSyCuIodIb2AsT--3GGdKgaofxVLYz48detk",
+    authDomain: "banmpam-webapp2020.firebaseapp.com",
+    databaseURL: "https://banmpam-webapp2020.firebaseio.com",
+    projectId: "banmpam-webapp2020",
+    storageBucket: "banmpam-webapp2020.appspot.com",
+    messagingSenderId: "688794089116",
+    appId: "1:688794089116:web:47f87d2fe33c7139a75f59"
+  }
 
 };
 
