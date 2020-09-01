@@ -1,0 +1,65 @@
+
+
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+
+.pick-sender-receiver-container, .picker-btn{
+display: flex;
+}
+
+.pick-send ,.pick-receiver{
+margin: 0.5rem;
+}
+
+.picker-btn {
+  flex-direction: row-reverse
+}
+
+
+.pick-send-search-btn  .mat-icon{
+  vertical-align: baseline!important;
+}
+
+
+.pick-sender-filter-input {
+  margin-right: 1rem;
+}
+
+
+.notification-sender{
+  word-wrap: break-word;
+  font-weight: 500;
+  font-size: smaller;
+  /* color: red; */
+  text-transform: uppercase;
+}
+
+.notification-sender span{
+   color: red;
+}
+
+
+
+
+.search-container .mat-icon{
+  vertical-align: baseline !important;
+}
+
+

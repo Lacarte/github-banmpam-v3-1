@@ -1,0 +1,16 @@
+<div class="not-found">
+	<mat-card>
+
+		<mat-card-content>
+			<mat-icon color="warn" matSuffix fontSet="fas" fontIcon="fa-exclamation-triangle"></mat-icon>
+			&nbsp;Module not available yet, please contact <a routerLink="/">@admin </a> <span class="notice-time" >{{todayNumber |  date:' HH:mm:ss ' : 'UTC'}}
+        <!-- <img src="https://via.placeholder.com/150"> -->
+      </span>
+
+
+			<button mat-button>
+    <mat-icon mat-icon routerLink="../">arrow_back</mat-icon>
+    </button>
+		</mat-card-content>
+	</mat-card>
+</div>

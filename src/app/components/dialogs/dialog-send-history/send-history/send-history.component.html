@@ -1,0 +1,128 @@
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<div class="example-container mat-elevation-z0">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+      GitHub's API rate limit has been reached. It will be reset in one minute.
+    </div>
+  </div>
+
+  <div class="example-table-container">
+
+    <table mat-table [dataSource]="dataSource" class="example-table"
+           matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
+      <!-- transaction Column -->
+
+      <ng-container matColumnDef="transaction">
+        <th mat-header-cell *matHeaderCellDef>Trans.</th>
+        <td mat-cell *matCellDef="let row">{{row.transaction}}</td>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="reference">
+        <th mat-header-cell *matHeaderCellDef>Ref.</th>
+        <td mat-cell *matCellDef="let row">{{row.reference}}</td>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="value">
+        <th mat-header-cell *matHeaderCellDef>Value</th>
+        <td mat-cell *matCellDef="let row">{{row.value}}</td>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef>Total</th>
+        <td mat-cell *matCellDef="let row">{{row.total}}</td>
+      </ng-container>
+
+
+      <!-- State Column -->
+      <ng-container matColumnDef="gift_description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let row">{{row.gift_description}}</td>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="created_at">
+        <th mat-header-cell *matHeaderCellDef>CreatedAt</th>
+        <td mat-cell *matCellDef="let row">{{row.created_at | date }}</td>
+      </ng-container>
+
+
+      <!-- State Column -->
+      <ng-container matColumnDef="sender_firstname">
+        <th mat-header-cell *matHeaderCellDef>SenderFisrtN</th>
+        <td mat-cell *matCellDef="let row">{{row.sender_firstname}}</td>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="sender_lastname">
+        <th mat-header-cell *matHeaderCellDef>SenderLastN</th>
+        <td mat-cell *matCellDef="let row">{{row.sender_lastname}}</td>
+      </ng-container>
+
+
+      <!-- State Column -->
+      <ng-container matColumnDef="receiver_firstname">
+        <th mat-header-cell *matHeaderCellDef>ReceiverFirstN</th>
+        <td mat-cell *matCellDef="let row">{{row.receiver_firstname}}</td>
+      </ng-container>
+
+
+
+      <!-- State Column -->
+      <ng-container matColumnDef="receiver_lastname">
+        <th mat-header-cell *matHeaderCellDef>ReceiverLastN</th>
+        <td mat-cell *matCellDef="let row">{{row.receiver_lastname}}</td>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="updated_at">
+        <th mat-header-cell *matHeaderCellDef>UpdatedAt</th>
+        <td mat-cell *matCellDef="let row">{{row.updated_at | date}}</td>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let row">{{row.status}}</td>
+      </ng-container>
+
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+      <div class="example-element-detail"
+           [@detailExpand]="element == dataElement ? 'expanded' : 'collapsed'">
+        <div class="example-element-diagram">
+         A
+        </div>
+        <div class="example-element-description">
+          {{element.description}}
+          <span class="example-element-description-attribution"> -- Wikipedia </span>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="hello(row)">
+      </tr>
+    </table>
+  </div>
+
+  <!-- <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator> -->
+
+</div>
+
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

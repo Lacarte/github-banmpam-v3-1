@@ -1,0 +1,183 @@
+//to resize input
+// ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+// ::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+
+// ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+//     transform: translateY(-1.1em) scale(.75);
+//     width: 133.33333%;
+// }
+
+
+.receive-pick-sender{margin-bottom: 1rem;}
+.fas{
+  font-size: large;
+  line-height: 1.5;
+}
+
+
+.less-info,.more-info{
+  overflow: hidden;
+}
+
+.more-info{
+	max-height: 0;
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+	transition: max-height 0.25s;
+}
+
+.less-info{
+transition-timing-function: cubic-bezier(.4,0,.2,1);
+transition: max-height 0.25s;
+max-height: 200px;
+}
+
+
+
+.header{
+  background-color :var(--primary-color-500);
+  color:white;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.value{
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  // border-bottom: 1px dotted #bbb;
+  font-size: 0.825rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  // font-weight: 700;
+}
+
+
+.the-gift{
+  cursor: pointer;
+  // user-select: none;
+  background-color: var(--primary-color-50);
+}
+
+.the-gift:hover{
+  background-color:#eee;
+}
+
+
+.field-left {
+  text-align: right;
+  font-weight: bolder;
+}
+
+.field-right {
+  text-align: left;
+
+}
+
+
+
+.more-detail span {
+  padding:1rem;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+  border-radius: 4px;
+   border: 1px solid var(--primary-color);
+  }
+
+
+  .more-detail span:hover {
+   background-color: var(--primary-color-50);
+
+  }
+
+
+.header.start {
+  -webkit-border-top-left-radius: 0.25rem;
+  -moz-border-radius-topleft: 0.25rem;
+  border-top-left-radius: 0.25rem;
+}
+
+.header.end {
+  -webkit-border-top-right-radius: 0.25rem;
+  -moz-border-radius-topright: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+
+.show-gift{
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.hide-gift{
+  visibility: hidden;
+  // display: none;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.8s linear;
+}
+
+.show-progress{
+  display: block;
+}
+
+.hide-progress{
+   display: none;
+}
+
+
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: 40px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner .3s linear infinite;
+}
+
+
+.show{
+  display: block;
+}
+
+.hide{
+   display: none;
+}
+
+
+.receiver-card.mat-card{
+  max-height: auto;
+  // transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition: max-height 0.225s;
+  overflow: hidden;
+  // min-height: 400px;
+}
+
+
+
+
+.wrapper-gift.show{
+  // background-image: url("./../../../../assets/gft.png");
+}
+
+.msg{
+  text-align: center;
+}
+
+
+
+table {
+  width: 100%;
+}

@@ -1,0 +1,142 @@
+
+
+.confirmation-wrapper {
+  // max-width:750px;
+  // border:1px solid;
+  margin: 0 auto;
+  // padding:24px;
+}
+
+.ref-title {
+  // background-color: red;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.ref-number {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #fff;
+  line-height: 100px;
+  text-align: center;
+  background: var(--primary-color);;
+  border: 10px solid black dotted;
+  font-family: "Roboto Mono", monospace;
+  position: relative;
+  transition: all 0.3s;
+}
+
+
+.ref-number:hover {
+  background: var(--primary-color-900);
+}
+
+
+.ref-deco{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // border: 1px solid #8a8a8a;
+  border-radius: 50%;
+  transform: scale(1.10);
+  transition: all 0.3s;
+  // animation: crescendo 0.25s alternate infinite cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+}
+
+
+
+// div:focus {
+//   border: 2px solid  mat-color($my-custom-primary, 300);
+//   transform: scale(1.20);
+// }
+
+.copied {
+ border: 2px solid  var(--primary-color-300);
+  transform: scale(1.18);
+}
+
+
+@keyframes crescendo {
+  0%   {
+    transform: scale(1.10);
+    opacity: 0.25;
+    border-style: solid;
+  }
+  100% {transform: scale(1.15);
+    border-style: dotted;
+  opacity: 1;
+
+  }
+}
+
+@media (min-width: 575.98px) {
+  .txtright {
+    text-align: right !important;
+    margin-top: 0;
+  }
+
+  .ok-btn {
+    margin-top: 0;
+  }
+
+  .txt-align {
+    text-align: right !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .sm-mt-1 {
+    margin-top: 1rem !important;
+  }
+
+  .ok-btn {
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+  }
+
+  .print-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+  }
+
+  .txt-align {
+    text-align: center !important;
+  }
+}
+
+.first-row .left,
+.first-row .right {
+  border-top: none;
+}
+
+.ref-number span {
+  // text-shadow: 1px 1px 0px #8e0000;
+}
+
+td.right {
+  text-align: right;
+}
+
+td.left {
+  // border-right: 1px dotted #CCC;
+}
+
+.table td {
+  padding: 0.35rem !important;
+}
+
+.table {
+  // background-color: #f9f9f9 !important;
+}
+
+.bb2-dotted {
+  border-bottom: 2px dotted #cccccc;
+}

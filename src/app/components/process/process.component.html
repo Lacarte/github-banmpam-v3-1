@@ -1,0 +1,27 @@
+<div fxLayout="column">
+<div class="title-header mb-3">send / receive</div>
+
+<mat-tab-group mat-stretch-tabs mat-align-tabs="center"  [@.disabled]="true">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>card_giftcard</mat-icon>
+     &nbsp;  Send
+    </ng-template>
+   <div class="row flex-row-reverse mx-3">
+    <button mat-icon-button class="btn-round-corner" (click)="dialogSendHistory()">
+    <mat-icon fontSet="fas" fontIcon="fa-history"></mat-icon>
+  </button>
+</div>
+    <app-send></app-send>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <!-- <mat-icon class="example-tab-icon">payment</mat-icon> -->
+      <mat-icon  fontSet="fas" fontIcon="fa-box" ></mat-icon>
+      &nbsp; Receive
+    </ng-template>
+   
+    <app-receive></app-receive>
+  </mat-tab>
+</mat-tab-group>
+</div>

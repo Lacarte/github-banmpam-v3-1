@@ -1,0 +1,275 @@
+<div class="title-header mb-2">Settings</div>
+<div class="wrapper-settings" fxLayout="column" fxLayoutAlign="space-around stretch">
+	<div class="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+
+
+		<div class="menu-settings p-2" style="background-color:#f4f4f5;" fxLayoutAlign="start stretch" fxLayout="column"
+			fxFlex="25" fxLayoutGap="10px">
+
+			<mat-card class="example-card mat-elevation-z0">
+				<mat-card-header>
+					<mat-card-title>Personal Info</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+
+					<mat-card class="example-card">
+						<mat-card-content>
+							Update Info
+						</mat-card-content>
+					</mat-card>
+
+				</mat-card-content>
+			</mat-card>
+
+
+
+			<mat-card class="example-card mat-elevation-z0">
+				<mat-card-header>
+					<mat-card-title>Personal Info</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+
+					<mat-card class="example-card">
+						<mat-card-content>
+							Update Info
+						</mat-card-content>
+					</mat-card>
+
+				</mat-card-content>
+			</mat-card>
+
+
+			<mat-card class="example-card mat-elevation-z0">
+				<mat-card-header>
+					<mat-card-title>Personal Info</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+
+					<mat-card class="example-card">
+						<mat-card-content>
+							Update Info
+						</mat-card-content>
+					</mat-card>
+
+				</mat-card-content>
+			</mat-card>
+
+
+			<mat-card class="example-card mat-elevation-z0">
+				<mat-card-header>
+					<mat-card-title>Personal Info</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+
+					<mat-card class="example-card">
+						<mat-card-content>
+							Update Info
+						</mat-card-content>
+					</mat-card>
+
+				</mat-card-content>
+			</mat-card>
+
+
+
+		</div>
+
+
+		<div class="content-settings" fxFlex="75">
+			<mat-tab-group mat-align-tabs="center" mat-stretch-tabs>
+
+				<mat-tab label="First">
+					<ng-template mat-tab-label>
+						Info
+					</ng-template>
+
+
+
+					<mat-card class="example-card mb-3">
+						<mat-card-header>
+							<mat-card-title class="mb-4">Personal</mat-card-title>
+						</mat-card-header>
+						<mat-card-content>
+
+
+							<mat-form-field class="example-form-field">
+								<mat-label>FullName</mat-label>
+								<input matInput type="text"  value="John Doe">
+								<button mat-button  matSuffix mat-icon-button aria-label="Clear" >
+    <mat-icon>mode_edit</mat-icon>
+  </button>
+							</mat-form-field>
+
+							<mat-form-field class="example-full-width mb-4">
+								<mat-label>Email</mat-label>
+								<input matInput placeholder="Ex. pat@example.com" value="pat@example.com">
+								<mat-error>
+									Please enter a valid email address
+								</mat-error>
+								<mat-error>
+									Email is <strong>required</strong>
+								</mat-error>
+							</mat-form-field>
+
+
+
+						</mat-card-content>
+					</mat-card>
+
+
+
+
+					<mat-card class="example-card my-2">
+						<mat-card-header>
+							<mat-card-title class="mb-4" proc>Devices</mat-card-title>
+						</mat-card-header>
+						<mat-card-content>
+
+
+
+							<div fxLayout="row" fxLayoutAlign="space-between center">
+
+								<div> HTC</div>
+								<div>
+
+									Last Date Acessed : 6/20/2020
+
+								</div>
+								<div>
+
+									Revoke Access
+
+								</div>
+
+							</div>
+
+
+
+
+						</mat-card-content>
+					</mat-card>
+
+
+				</mat-tab>
+
+
+
+				<mat-tab label="First">
+					<ng-template mat-tab-label>
+						Users & Perm.
+					</ng-template>
+
+					<mat-tab-group mat-align-tabs="center" mat-stretch-tabs>
+
+
+						<mat-tab label="First">
+							<ng-template mat-tab-label>
+								Users
+							</ng-template>
+
+							<button mat-raised-button class="my-2" color="primary">Create User</button>
+
+
+							<mat-form-field class="">
+								<mat-label>Filter</mat-label>
+								<input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+      </mat-form-field>
+
+								<table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+
+									<!-- Position Column -->
+									<ng-container matColumnDef="position">
+										<th mat-header-cell *matHeaderCellDef> No. </th>
+										<td mat-cell *matCellDef="let element"> {{element.position}} </td>
+									</ng-container>
+
+									<!-- Name Column -->
+									<ng-container matColumnDef="name">
+										<th mat-header-cell *matHeaderCellDef> Name </th>
+										<td mat-cell *matCellDef="let element"> {{element.name}} </td>
+									</ng-container>
+
+									<!-- Weight Column -->
+									<ng-container matColumnDef="weight">
+										<th mat-header-cell *matHeaderCellDef> Weight </th>
+										<td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+									</ng-container>
+
+									<!-- Symbol Column -->
+									<ng-container matColumnDef="symbol">
+										<th mat-header-cell *matHeaderCellDef> Symbol </th>
+										<td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+									</ng-container>
+
+									<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+									<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+									<!-- Row shown when there is no matching data. -->
+									<tr class="mat-row" *matNoDataRow>
+										<td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"
+										</td>
+									</tr>
+								</table>
+
+						</mat-tab>
+
+
+
+
+						<mat-tab label="Second">
+							<ng-template mat-tab-label>
+								Profiles
+							</ng-template>
+
+							<button mat-raised-button class="my-2" color="primary">Create Profile</button>
+
+						</mat-tab>
+
+						<mat-tab label="Third">
+							<ng-template mat-tab-label>
+								Permissions
+							</ng-template>
+
+							<button mat-raised-button  class="my-2" color="primary">Create Permission</button>
+
+						</mat-tab>
+					</mat-tab-group>
+
+				</mat-tab>
+
+				<mat-tab label="Stores">
+
+
+				</mat-tab>
+
+
+				<mat-tab label="First">
+					<ng-template mat-tab-label>
+						Core
+					</ng-template>
+
+					<mat-tab-group mat-align-tabs="center" mat-stretch-tabs>
+
+
+						<mat-tab label="First">
+							<ng-template mat-tab-label>
+								dfdfdf
+							</ng-template>
+
+
+							<button mat-raised-button  class="my-2" color="primary">Create Permission</button>
+							<button mat-raised-button  class="my-2" color="primary">Create Permission</button>
+
+
+						</mat-tab>
+					</mat-tab-group>
+
+				</mat-tab>
+
+
+
+
+			</mat-tab-group>
+
+		</div>
+	</div>

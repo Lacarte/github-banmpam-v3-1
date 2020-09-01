@@ -1,0 +1,149 @@
+.wrapper{
+  background: #e2e2e5;
+    height: 100%;
+    position: absolute;
+    width: 100% ;
+  /* background-image: url(https://unsplash.com/photos/h7vKkZNNThE/download?force=true&w=1920) !important; */
+  /* background-image: url(https://unsplash.com/photos/h7vKkZNNThE/download?force=true&w=1920) !important; */
+  background-image: url('https://images.pexels.com/photos/1048022/pexels-photo-1048022.jpeg?cs=srgb&dl=pexels-scott-webb-1048022.jpg&fm=jpg') !important;
+
+ 
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.right-pane,.left-pane{
+/* border:1px solid red; */
+}
+
+
+.left-pane{
+   background: white;
+    height: calc(100% - 40px);
+    top: 20px;
+    position: relative;
+    width: 50%;
+}
+
+.right-pane{
+    background: #474A59;
+    box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
+    color: #F1F1F2;
+    position: relative;
+}
+
+.form {
+    margin: 40px;
+    position: absolute;
+}
+
+
+
+.container {
+    display: flex;
+    height: 320px;
+    margin: 0 auto;
+    width: 640px;
+}
+
+
+.left-pane .header {
+    font-size: 50px;
+    font-weight: 900;
+    margin: 50px 40px 40px;
+}
+
+
+.eula {
+    color: #999;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 40px;
+}
+
+
+ .btn-block {
+  line-height: 2.5rem;
+  width: 100%;
+}
+
+.full-width-input {
+  width: 100%;
+}
+
+
+
+/* input color class */
+::ng-deep input.mat-input-element {
+  color: #c2c2c5;
+}
+
+/* Change label color on focused */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #c2c2c5 !important;
+}
+
+/* underline border color on focused */
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+  background-color: #c2c2c5 !important;
+}
+
+
+
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+    color: #c2c2c5;
+}
+
+::ng-deep .mat-form-field-appearance-legacy  .mat-form-field-underline {
+      color: #c2c2c5 !important;
+    background-color: #c2c2c5;
+}
+
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+      color: #c2c2c5 !important;
+
+}
+
+
+
+.right-pane .header {
+    height: 50px;
+    /* color: white; */
+    color: black;
+    background-color: #ffffff;
+    /* background-color: #673ab7; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* border-radius: 1rem; */
+    /* border-top-left-radius: 4px; */
+    /* border-top-right-radius: 4px; */
+}
+
+.right-pane .header  > img{
+ filter: invert(1);; 
+}
+
+
+
+ .btn-round-corner {
+  border-radius: 25px;
+}
+
+
+.btn-center{
+  text-align: center;
+}
+
+
+.hide-lt-sm{
+  display: none;
+}
+
+.show-lt-sm{
+  display: block;
+}

@@ -1,0 +1,90 @@
+<div class="wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+	<div class="container box" >
+		<!-- <div class="left-pane" fxFlex="50"  [ngStyle.xs]="{'display': 'none'}"> -->
+		<div class="left-pane"  ngClass.lt-sm="hide-lt-sm" fxFlex="50" >
+
+  <div class="header">Login</div>
+     <div class="eula">By logging in you agree to BANMPAM long terms & conditions.
+ <a href="#">READ</a>
+
+     </div>
+		</div>
+
+
+		<div class="right-pane" fxFlex="50" fxFlex.lt-sm="100">
+
+					<!--<div class="header mb-4" ngClass.lt-sm="show-lt-sm"  fxHide="true"  fxLayout="row" fxLayoutAlign="center center" >
+		 <img src="../assets/gear.svg" height="32px"> 
+        <h5>LOGIN - BANMPAM</h5>
+     </div>-->
+
+			<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="form mt-5">
+				<!-- <form #form="ngForm" [formGroup]="loginForm" (ngSubmit)="onSubmit(form)" class="mt-3"> -->
+				<mat-form-field class="full-width-input mb-0">
+					<mat-label>Username</mat-label>
+
+					<input matInput name="username" required [(ngModel)]="login.username">
+					<!-- <input matInput placeholder="User" formControlName="username" required> -->
+					<!-- <mat-error *ngIf="isFieldInvalid('userName')"> -->
+					<mat-error>
+						Please inform your user name
+					</mat-error>
+				</mat-form-field>
+
+				<mat-form-field class="full-width-input">
+
+					<mat-label>Password</mat-label>
+
+					<input matInput [type]="hide ? 'password' : 'text'" name="password" required [(ngModel)]="login.password">
+					<!-- <input matInput type="password" placeholder="Password" formControlName="password" required> -->
+					<!-- <mat-error *ngIf="isFieldInvalid('userName')"> -->
+
+					<button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+					<mat-error>
+						Please inform your password
+					</mat-error>
+				</mat-form-field>
+				<!-- <mat-checkbox (click)="authService.toggleSideTool()">showToolBar</mat-checkbox> -->
+
+
+				<!-- <button mat-raised-button color="primary" type="submit" class="btn-block btn-round-corner mt-3" >LOGIN -->
+				<button mat-flat-button color="primary" type="submit" class="btn-block btn-round-corner mt-3" >LOGIN
+                    <!-- <mat-icon class="ml-1">navigate_next</mat-icon> -->
+
+        </button>
+				<div class="row btn-center pt-2">
+					<button  type="button" mat-icon-button aria-label="Example icon button with a vertical three dot icon"  
+           (click)="openBottomSheet()"
+          >
+        <mat-icon>settings</mat-icon>
+
+
+      </button>
+
+
+					<mat-menu #menu="matMenu">
+
+						<button type="button" mat-menu-item>
+          <span>Forget Password?</span>
+          </button>
+
+						<button type="button" mat-menu-item>
+          <span>Sign up for an Account</span>
+          </button>
+
+
+					</mat-menu>
+
+				</div>
+			</form>
+
+
+		</div>
+
+	</div>
+
+
+</div>

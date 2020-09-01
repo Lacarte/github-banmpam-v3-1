@@ -1,0 +1,110 @@
+<div class="confirmation-wrapper">
+  <div id="print-section">
+    <div class="header">
+      <div>
+        <div class="logo">
+          <img
+            class=" mx-auto d-block"
+            height="80px"
+            src="https://logoipsum.com/assets/logo/logo-4.svg"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 ">
+          <strong>Reference: </strong> {{ data.reference }}<br />
+          <strong>Zone: </strong>{{ data.zone }}<br />
+        </div>
+        <div class="col-md-6 txtright">
+          <strong>Trans.: </strong>{{ data.transactionNumber }}
+          <address><strong>Date: </strong>{{ data.ddate }}<br /></address>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="reference d-flex justify-content-center align-items-center">
+        <div class="ref-title"></div>
+        <div class="ref-number"  matTooltip="{{isCopied ? 'Copied' : 'Copy'}}" (click)="copy(data.reference)" >
+
+          <div class="ref-deco"  [ngClass]="{'copied': isCopied}" ></div>
+          <span>{{ data.reference }}</span>
+        </div>
+      </div>
+
+      <div class="row pb-3 bb2-dotted">
+        <div class="col-md-6 ">
+          <strong>Sender:</strong><br />
+          {{ data.senderFirstName + " " + data.senderLastName }} <br />
+          ({{ data.senderTel }})
+        </div>
+        <div class="col-md-6 txtright sm-mt-1">
+          <strong>Receiver:</strong><br />
+          {{ data.receiverFirstName + " " + data.receiverLastName }} -
+          {{ data.receiverCodeCountry }}
+          <br />
+          ({{ data.receiverTel }})
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-sm-6 txt-align">
+          Thanks for using our service!<br />
+          Please contact us for any info.<br />
+          (809)-000-0000<br />
+        </div>
+        <div class="col-md-6">
+          <table class="table table-clear ">
+            <tbody>
+              <tr class="first-row">
+                <td class="left">
+                  <strong>Value</strong>
+                </td>
+                <td class="right">${{ data.giftValue | number: ".2" }}</td>
+              </tr>
+              <tr>
+                <td class="left">
+                  <strong>Fee</strong>
+                </td>
+                <td class="right">${{ data.fee | number: ".2" }}</td>
+              </tr>
+              <tr>
+                <td class="left">
+                  <strong>Total</strong>
+                </td>
+                <td class="right">
+                  <strong>${{ data.total | number: ".2" }}</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+ </div>
+    <div class="row no-gutters flex-row-reverse mt-4">
+      <button
+        (click)="okBtn()"
+        class="col-sm-3"
+        mat-raised-button
+        aria-label="Example icon-button with a heart icon"
+      >
+        <mat-icon fontSet="fas" fontIcon="fa-check"></mat-icon>
+        &nbsp; OK
+      </button>
+
+      <button
+      [useExistingCss]="true"
+        printTitle="Send-receipt-{{data.reference}}"
+        printSectionId="print-section"
+        ngxPrint
+        mat-raised-button
+        color="primary"
+        class="col-sm-6 ml-auto mr-4"
+        type="button"
+      >
+        <mat-icon fontSet="fas" fontIcon="fa-print"> </mat-icon>
+        &nbsp; Print
+      </button>
+    </div>
+
+</div>

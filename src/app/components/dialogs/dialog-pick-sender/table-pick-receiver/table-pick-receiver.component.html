@@ -1,0 +1,54 @@
+<div >
+    <div class="pick-receiver-table-container">
+
+      <!-- <mat-checkbox class="filter-search" [(ngModel)]="filterChecked">Filter</mat-checkbox>
+        <mat-form-field>
+        <input matInput *ngIf="filterChecked" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field> -->
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container>
+
+    <!-- firstName Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>FIRSTNAME</th>
+      <td mat-cell *matCellDef="let row">{{row.firstName}}</td>
+    </ng-container>
+
+
+    <!-- lastName Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>LASTNAME</th>
+      <td mat-cell *matCellDef="let row">{{row.lastName}}</td>
+    </ng-container>
+
+
+    <!-- phone Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>PHONE</th>
+      <td mat-cell *matCellDef="let row">{{row.phone}}</td>
+    </ng-container>
+
+    <!-- idDoc Column -->
+    <ng-container matColumnDef="idDoc">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>IDDOC</th>
+      <td mat-cell *matCellDef="let row">{{row.idDoc}}</td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="5"
+      [pageSizeOptions]="[1, 5, 50, 100]">
+  </mat-paginator>
+</div>

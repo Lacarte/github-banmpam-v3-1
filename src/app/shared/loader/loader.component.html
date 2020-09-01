@@ -1,0 +1,4 @@
+<!-- <div class="overlay"> -->
+<div *ngIf="loaderService.isLoading$ | async" class="overlay">
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>

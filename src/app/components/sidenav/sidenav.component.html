@@ -1,0 +1,220 @@
+<mat-sidenav-container class="mat-drawer-transition sidenav-container" autosize>
+
+
+	<mat-sidenav #sidenav [(opened)]="opened" [mode]="isLtMd ? 'over' : 'side'" role="navigation"
+		class="nav-theme sidenav">
+
+
+
+		<div class="signal-container">
+			<div class="signal" [ngClass]="[(isConnected)?'connected':'disconnected']"></div>
+			<!-- <div class="signal"  [ngClass]="[(isConnected)?'connected':'disconnected',(pss.connected$) ?'server-connected':'server-disconnected']"></div> -->
+		</div>
+
+		<mat-nav-list>
+			<mat-list-item *ngIf="isLtMd" (click)="isSidenaveText = !isSidenaveText" class="mt-5"
+				[disableRipple]="true">
+				<mat-icon mat-list-icon style="scale(0.5); color:#666;">read_more</mat-icon>
+				<!-- <mat-slide-toggle  (click)="isSidenaveText = !isSidenaveText"></mat-slide-toggle> -->
+				<!-- <mat-button-toggle (click)="isSidenaveText = !isSidenaveText">
+    <mat-icon>menu_open</mat-icon>
+  </mat-button-toggle> -->
+
+				<!-- <mat-divider></mat-divider> -->
+
+			</mat-list-item>
+		</mat-nav-list>
+
+
+		<!-- To Add Async -->
+		<mat-nav-list (click)="isLtMd ? sidenav.toggle(): null">
+
+
+
+			<!-- <a mat-list-item routerLink='/first'>First Component</a> -->
+			<mat-list-item class="mt-2" routerLink="/dashboard" routerLinkActive="active">
+
+				<mat-icon mat-list-icon>dashboard</mat-icon>
+				<div *ngIf="isSidenaveText" class="sidenav-item">
+					<span class="lead">Dashboard</span>
+				</div>
+			</mat-list-item>
+
+
+			<mat-divider></mat-divider>
+
+			<!-- <a mat-list-item routerLink='/first'>First Component</a> -->
+			<mat-list-item routerLink="/proceed" routerLinkActive="active">
+
+				<mat-icon mat-list-icon>device_hub</mat-icon>
+				<div *ngIf="isSidenaveText" class="sidenav-item">
+					<span class="lead">Proceed</span>
+				</div>
+			</mat-list-item>
+
+			<mat-list-item routerLink="/payment" routerLinkActive="active">
+				<mat-icon mat-list-icon>monetization_on</mat-icon>
+				<div *ngIf="isSidenaveText" class="sidenav-item">
+					<span class="lead">Balance</span>
+				</div>
+			</mat-list-item>
+
+
+			<!-- <mat-list-item routerLink="/report" routerLinkActive="active">
+      <mat-icon mat-list-icon>insert_chart</mat-icon>
+      <div *ngIf="isSidenaveText" class="sidenav-item">
+        <span class="lead">Report</span>
+      </div>
+    </mat-list-item> - -->
+			<!-- 
+    <mat-divider  *ngIf="securityObject.canAccessAdmin" ></mat-divider> -->
+
+
+
+			<!-- <mat-list-item routerLink="/settings"  *ngIf="securityObject.canAccessAdmin" routerLinkActive="active"> -->
+			<mat-list-item routerLink="/settings" routerLinkActive="active">
+				<mat-icon mat-list-icon fontSet="fas" fontIcon="fa-cog"></mat-icon>
+				<div *ngIf="isSidenaveText" class="sidenav-item">
+					<span class="lead">Settings</span>
+				</div>
+			</mat-list-item>
+
+			<!-- <mat-list-item routerLink="/settings"  *ngIf="securityObject.canAccessAdmin" routerLinkActive="active"> -->
+			<mat-list-item routerLink="/admin" routerLinkActive="active">
+				<mat-icon mat-list-icon fontSet="fas" fontIcon="fa-tools"></mat-icon>
+				<div *ngIf="isSidenaveText" class="sidenav-item">
+					<span class="lead">Admin</span>
+				</div>
+			</mat-list-item>
+
+
+
+			<!-- <mat-accordion multi="true" [displayMode]="displayMode">
+				<mat-expansion-panel class="no-shadow">
+					<mat-expansion-panel-header fxLayout="row" [expandedHeight]="expandHeight"
+						[collapsedHeight]="collapseHeight">
+
+						<mat-panel-title>
+							<mat-icon mat-list-icon class="icon-fas" fontSet="fas" fontIcon="fa-shield-alt"></mat-icon>
+							<span>Procesos</span>
+						</mat-panel-title>
+
+					</mat-expansion-panel-header>
+
+          <mat-nav-list class="ml-0" dense>
+
+						<mat-divider class="submenu-divider"></mat-divider>
+						<mat-list-item routerLink="/iteracion" routerLinkActive="active">
+							<span class="item-description"><span class="active-indicator"></span>Iteraciones</span>
+						</mat-list-item>
+
+						<mat-divider class="submenu-divider"></mat-divider>
+						<mat-list-item routerLink="/asignacion" routerLinkActive="active">
+							<span class="item-description"><span class="active-indicator"></span>Asignaciones</span>
+						</mat-list-item>
+
+
+          	<mat-divider class="submenu-divider"></mat-divider>
+						<mat-list-item routerLink="/capturas-pendientes" routerLinkActive="active">
+							<span class="item-description"><span class="active-indicator"></span>Capturas Pendientes</span>
+						</mat-list-item>
+
+					</mat-nav-list>
+				</mat-expansion-panel>
+			</mat-accordion>
+ -->
+
+
+		</mat-nav-list>
+	</mat-sidenav>
+
+
+	<mat-sidenav-content>
+
+
+
+
+
+
+
+		<!-- <mat-toolbar class="flexSpaceBetween" color="primary" *ngIf="disclaimerPbService.isAgreeDisclaimer"> -->
+		<mat-toolbar class="flexSpaceBetween">
+
+			<span>
+    <!-- <button (click)="sidenav.toggle()" mat-icon-button> -->
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+      </button>
+
+    <button  mat-icon-button *ngIf="sidenav.opened && !(uiService.getIsLtMd() | async )" (click)="isSidenaveText = !isSidenaveText">
+      <mat-icon>read_more</mat-icon>
+     </button>
+
+
+
+
+
+
+
+
+  </span>
+
+			<span>
+
+      <span class="spacer"></span>
+
+
+
+			<button mat-icon-button  aria-label="Example icon-button with a menu">
+  <mat-icon matBadge="15" matBadgeColor="primary" matBadgeOverlap="true"  matBadgeSize="small">notification_important</mat-icon>
+    <!-- Include text description of the icon's meaning for screen-readers -->
+    <span class="cdk-visually-hidden">
+    </span>
+    </button>
+
+			<div class="vertical-divider"></div>
+
+
+
+			<button mat-icon-button [matMenuTriggerFor]="menu">
+         <mat-icon>account_circle</mat-icon>
+      </button>
+
+
+			<mat-menu #menu="matMenu">
+
+				<div class="header-menu my-2">
+					<span>Jhon doe </span>
+
+				</div>
+
+
+				<button mat-menu-item>
+        <mat-icon mat-list-icon fontSet="fas" fontIcon="fa-cog"></mat-icon>
+        <span>Profile</span>
+        </button>
+
+				<button mat-menu-item (click)="authService.logout()">
+        <mat-icon mat-list-icon fontSet="fas" fontIcon="fa-sign-out-alt"></mat-icon>
+        <span>Logout</span>
+        </button>
+
+
+
+			</mat-menu>
+
+			</span>
+
+		</mat-toolbar>
+
+
+
+		<div fxLayoutAlign="center center">
+			<div class="wrapper p-4 mt-2 " fxFlex="auto" fxLayout="column">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+
+
+	</mat-sidenav-content>
+</mat-sidenav-container>

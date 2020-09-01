@@ -1,0 +1,30 @@
+<div class="wrapper" fxFlex="auto" fxLayout="column">
+
+  <div class="mt-4" fxFlex="auto" fxLayout="row">
+    Do you want to &nbsp; <span class="bold">LOGOUT</span> ?
+  </div>
+
+  <div class="row mt-4" fxflex="auto" fxLayout="row" fxLayoutGap="2%"> 
+    <button fxFlex="100"
+      (click)="onYesClick()"
+      tabindex="-1"
+      color="primary"
+      class="btn-yes"
+      mat-raised-button
+      aria-label="Example icon-button with a heart icon">
+      <mat-icon fontSet="fas" fontIcon="fa-check"></mat-icon>
+      &nbsp; YES
+    </button>
+
+    <button mat-dialog-close
+     fxFlex="50%"
+      tabindex="1"
+      mat-raised-button
+      class="btn-no"
+      type="button">
+      &nbsp; NO
+    </button>
+  </div>
+
+
+</div>

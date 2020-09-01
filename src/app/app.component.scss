@@ -1,0 +1,26 @@
+@media (min-width: 1200px) {
+  .main-container {
+      /* max-width: 1140px; */
+      margin:0 auto;
+  }
+  }
+
+
+  .main-container {
+    height: 100%;
+    // display: flex;
+
+}
+
+
+//to remove bottom padding imput doesn't work in styles.scss
+::ng-deep .mat-form-field-wrapper{
+  // margin-bottom: -1.25em;
+}
+
+
+
+ .btn-round-corner {
+  border-radius: 25px;
+}
+
