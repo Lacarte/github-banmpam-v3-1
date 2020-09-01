@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
-import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import {
+  MatBottomSheet,
+  MatBottomSheetRef
+} from "@angular/material/bottom-sheet";
 
 import { AuthService } from "../../services/auth.service";
 import { SidenavService } from "../../services/sidenav.service";
@@ -44,16 +47,14 @@ export class LoginComponent implements OnInit {
     public authenticationService: AuthenticationService,
     private uiService: UIService,
     private dataService: DataService,
-     private bottomSheet: MatBottomSheet
+    private bottomSheet: MatBottomSheet
   ) {
     this.authenticationService.logout();
   }
 
-  ngOnInit() {
- }
+  ngOnInit() {}
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   public initializeFormGroup() {
     this.loginForm.setValue({
@@ -64,32 +65,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.valid);
+    console.log("form.valid => ",form.valid);
 
     if (form.valid) {
-
-    this.authenticationService.signIn(this.login);
-  
-      /*
-         console.log(this.login);
-      this.authService.loginProcess(this.login).subscribe(
-        result => {
-          console.log("success", result);
-        },
-        error => console.log("error", error)
-      );
-  
-    */
+      this.authenticationService.signIn(this.login);
+    }
   }
-
-  }
-
-
 
   openBottomSheet(): void {
     this.bottomSheet.open(LoginBottomsheetComponent);
   }
-
-
-
 }

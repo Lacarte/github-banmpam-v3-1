@@ -27,6 +27,7 @@ export class AuthService {
   environment: any;
   private subject = new BehaviorSubject<User>(null);
   user$: Observable<User> = this.subject.asObservable();
+  
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
 

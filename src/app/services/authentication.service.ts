@@ -13,6 +13,8 @@ import { Login } from "../shared/interfaces/login";
 export class AuthenticationService {
   userData: Observable<firebase.User>;
 
+
+  
   constructor(
     private afAuth: AngularFireAuth,
     private cloudFunctions: AngularFireFunctions,
@@ -28,13 +30,19 @@ export class AuthenticationService {
       if (user) {
         // User is signed in.
         //  console.log("User signed in", user);
-        user.getIdToken().then(function(data) {
+        //user.getIdToken().then(function(data) {
           //console.log("data => ", data);
-        });
+        //});
+      
+                console.log("user => ", data);
+
         user.getIdTokenResult().then(idTokenResult => {
           console.log("idTokenResult => ", idTokenResult);
           console.log("Claims admin => ", idTokenResult.claims.admin);
         });
+
+
+
       } else {
         // No user is signed in.
         // console.log("No user is signed in", user);
@@ -61,17 +69,17 @@ export class AuthenticationService {
   signIn(login: Login) {
     
     console.log("signin");
-    // this.afAuth
-    //   .signInWithEmailAndPassword(login.email, login.password)
-    //   .then(res => {
-    //     console.log("Successfully signed in!");
+    this.afAuth
+      .signInWithEmailAndPassword(login.email, login.password)
+      .then(res => {
+        console.log("Successfully signed in!");
 
-    //     this.router.navigate(["/"]);
+        this.router.navigate(["/"]);
   
-    //   })
-    //   .catch(err => {
-    //     console.log("Something is wrong:", err.message);
-    //   });
+      })
+      .catch(err => {
+        console.log("Something is wrong:", err.message);
+      });
   }
 
 

@@ -12,6 +12,7 @@ import { AuthService } from "../../services/auth.service";
 import { PingServerService } from "../../services/ping-server.service";
 import { AppUserAuth } from "../../security/app-user-auth";
 import { Subscription } from "rxjs";
+import { AuthenticationService } from "../../services/authentication.service";
 
 @Component({
   selector: "app-sidenav",
@@ -40,9 +41,10 @@ export class SidenavComponent implements OnInit,OnDestroy {
     private connectionService: ConnectionService,
     public dialog: MatDialog,
     private authService: AuthService,
+    private authenticationService: AuthenticationService,
     private uiService: UIService
   ) {
-    this.securityObject = this.authService.securityObject;
+   // this.securityObject = this.authService.securityObject;
     this.connectionService.monitor().subscribe(isConnected => {
       this.isConnected = isConnected;
     });
