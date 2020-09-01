@@ -59,17 +59,19 @@ export class AuthenticationService {
 
   /* Sign in */
   signIn(login: Login) {
-    this.afAuth
-      .signInWithEmailAndPassword(login.email, login.password)
-      .then(res => {
-        console.log("Successfully signed in!");
+    
+    console.log("signin");
+    // this.afAuth
+    //   .signInWithEmailAndPassword(login.email, login.password)
+    //   .then(res => {
+    //     console.log("Successfully signed in!");
 
-        this.router.navigate(["/"]);
+    //     this.router.navigate(["/"]);
   
-      })
-      .catch(err => {
-        console.log("Something is wrong:", err.message);
-      });
+    //   })
+    //   .catch(err => {
+    //     console.log("Something is wrong:", err.message);
+    //   });
   }
 
 
@@ -78,7 +80,7 @@ export class AuthenticationService {
     // var user = this.afAuth.currentUser;
     var user = this.afAuth.authState.pipe(first()).toPromise();
    // var user2 = this.authenticated ? this.authState : null;
-    /console.log("USER2 => ", user2);
+    //console.log("USER2 => ", user2);
 
     if (user != null) {
       console.log("USER => ", user);
@@ -222,7 +224,8 @@ export class AuthenticationService {
       
       })
       .catch(function(error) {
-        alert("Something went wrong!");
+        // alert("Something went wrong!");
+        console.log("Something went wrong!");
       });
   }
 }

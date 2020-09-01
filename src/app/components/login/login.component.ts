@@ -17,7 +17,7 @@ import { AuthenticationService } from "../../services/authentication.service";
 })
 export class LoginComponent implements OnInit {
   login: Login = {
-    username: null,
+    email: null,
     password: null
   };
 
