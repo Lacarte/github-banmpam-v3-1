@@ -1,64 +1,49 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { Observable, BehaviorSubject } from "rxjs";
+import { Observable, BehaviorSubject, of } from "rxjs";
 import { first } from "rxjs/operators";
 import { AngularFireFunctions } from "@angular/fire/functions";
 import { UIService } from "../shared/ui.service";
 import { Router } from "@angular/router";
 import { Login } from "../shared/interfaces/login";
 import { User } from "../shared/interfaces/user";
+import { auth } from "firebase/app";
+import {
+  AngularFirestore,
+  AngularFirestoreDocument
+} from "@angular/fire/firestore";
+import { switchMap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthenticationService {
-  
-  
-  userData: Observable<firebase.User>;
-  private user:User;
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  user$: Observable<User>;
 
   constructor(
     private afAuth: AngularFireAuth,
+    private afs: AngularFirestore,
     private cloudFunctions: AngularFireFunctions,
     private uiService: UIService,
     private router: Router
   ) {
-
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem("currentUser")));
-    this.currentUser = this.currentUserSubject.asObservable();
-
-
-    this.userData = afAuth.authState;
-    //check when the user logout or login
-
-    //to monitor user state
-    afAuth.onAuthStateChanged(function(user) {
-      if (user) {
-
-        newUser: User = null;
-
-        user.getIdTokenResult().then(idTokenResult => {
-        console.log("idTokenResult => ", idTokenResult);
-        console.log("Claims admin => ", idTokenResult.claims.admin);
-         
-
-         
-         });
-      } else {
-        // No user is signed in.
-        // console.log("No user is signed in", user);
-      }
-    });
+      // Get the auth state, then fetch the Firestore user document or return null
+      this.user$ = this.afAuth.authState.pipe(
+        switchMap(user => {
+            // Logged in
+          if (user) {
+            return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+          } else {
+            // Logged out
+            return of(null);
+          }
+        })
+      )
   }
 
-
-//  public get currentUserValue(): User {
-//     return this.currentUserSubject.value;
-//   }
-
-
+  //  public get currentUserValue(): User {
+  //     return this.currentUserSubject.value;
+  //   }
 
   /* Sign up */
   signUp(email: string, password: string) {
@@ -78,7 +63,7 @@ export class AuthenticationService {
     this.afAuth
       .signInWithEmailAndPassword(login.email, login.password)
       .then(res => {
-        console.log(" res=> ",res);
+        console.log(" res=> ", res);
         console.log("Successfully signed in!");
 
         //const user = new User(decodedJwtData.sub, res, decodedJwtData.role, decodedJwtData.permissions);
@@ -106,10 +91,6 @@ export class AuthenticationService {
       console.log("USER => is Loggedout");
     }
   }
-
-
-
-
 
   updateUserProfile() {
     this.afAuth.currentUser.then(user => {
@@ -228,9 +209,9 @@ export class AuthenticationService {
       .signOut()
       .then(function() {
         //alert("User signed out!");
-        sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem("currentUser");
         this.currentUserSubject.next(null);
-        
+
         this.uiService.isOpen = false;
         this.router.navigate(["/login"]);
       })
