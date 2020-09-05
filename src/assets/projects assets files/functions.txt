@@ -1,0 +1,171 @@
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+
+admin.initializeApp();
+
+// exports.addAdminRole = functions.https.onCall((data, context) => {
+//   // get user and add admin custom claim
+//   return admin
+//     .auth()
+//     .getUserByEmail(data.email)
+//     .then((user) => {
+//       return admin.auth().setCustomUserClaims(user.uid, {
+//         admin: true,
+//       });
+//     })
+//     .then(() => {
+//       return {
+//         message: `Success! ${data.email} has been made an admin.`,
+//       };
+//     })
+//     .catch((err) => {
+//       return err;
+//     });
+// });
+
+// //random functions
+// //request
+// exports.randomNumber = functions.https.onRequest((request, response) => {
+//   const n = Math.round(Math.random() * 100);
+//   //you can log in the firebase console Log with :
+//   //console.log();
+//   response.send(n.toString());
+// });
+
+// //onCall
+// exports.randomNumber2 = functions.https.onCall((data, context) => {
+//   const n = Math.round(Math.random() * 100);
+//   //you can log in the firebase console Log with :
+//   //console.log();
+//   return `Hello`;
+// });
+
+// //onCall
+// exports.salute = functions.https.onCall((data, context) => {
+//   return `Hello ${data.name}`;
+// });
+
+// // exports.newUserSignup =functions.auth.user().onCreate(user => {
+
+// //   console.log('user created => ', user);
+
+// // })
+
+// // exports.newUserSignup = functions.auth.user().onCreate((user) => {
+// //   console.log("user created => ", user);
+// //   return admin.firestore().collection("users").doc(user.uid).set({
+// //     upvoteedOn: [],
+// //   });
+// // });
+
+// //onCall
+// exports.listAllUsers = functions.https.onCall((data, context) => {
+//   // check if user is admin (true "admin" custom claim), return error if not
+//   // const isAdmin = context.auth.token.admin === true
+//   // if (!isAdmin) {
+//   //   return { error: `Unauthorized.` }
+//   // }
+
+//   return admin
+//     .auth()
+//     .listUsers()
+//     .then((listUsersResult) => {
+//       // go through users array, and deconstruct user objects down to required fields
+//       console.log("listUsersResult => ", listUsersResult);
+//       const result = listUsersResult.users.map((user) => {
+
+//         const { uid, email, photoURL, displayName, disabled } = user;
+
+//         console.log("user => ", user);
+
+//         return { uid, email, photoURL, displayName, disabled };
+//       });
+
+//       return { result };
+//     })
+//     .catch((error) => {
+//       return { error: "Error listing users" };
+//     });
+// });
+
+
+
+
+// exports.accountCreate = functions.auth.user().onCreate(user => {
+//   console.log(user.data);
+//   userDoc = {
+//     'email': user.data.email,
+//     'displayName': user.data.displayName,
+//     'claims': 'x',
+//     'permissions': y
+//   }
+
+//   admin.firestore().collection('users').doc(user.data.uid)
+//     .set(userDoc).then(writeResult => {
+//       console.log('User Created result:', writeResult);
+//       return;
+//     }).catch(err => {
+//       console.log(err);
+//       return;
+//     });
+// });
+
+
+// exports.accountCreate = functions.auth.user().onCreate((user) => {
+
+//   userDoc = {
+
+//     'email': user.email,
+//     'displayName': user.displayName,
+//     'claims': 'x',
+//     'permissions': 'y'
+//   }
+
+
+// // // exports.newUserSignup = functions.auth.user().onCreate((user) => {
+// // //   console.log("user created => ", user);
+// // //   return admin.firestore().collection("users").doc(user.uid).set({
+// // //     upvoteedOn: [],
+// // //   });
+// // // });
+
+
+//   return admin
+//     .firestore()
+//     .collection('users')
+//     .doc(user.uid)
+//      .set(JSON.parse(JSON.stringify(user)));
+//     //.set(userDoc);
+// });
+
+
+
+
+
+exports.newUserSignup = functions.auth.user().onCreate((user) => {
+  console.log("user created => ", user);
+  userDoc = {
+    'email': user.email,
+    'displayName': user.displayName,
+    'claims': 'x',
+    'permissions': 'y'
+  }
+
+  return admin.firestore().collection("users").doc(user.uid)
+    .set(JSON.parse(JSON.stringify(userDoc))).then(x => {
+      return admin.firestore().collection("permissions").doc(user.uid)
+        .set(JSON.parse(JSON.stringify(userDoc)));
+    });
+
+
+});
+
+
+
+// // Create and Deploy Your First Cloud Functions
+// // https://firebase.google.com/docs/functions/write-firebase-functions
+//
+// exports.helloWorld = functions.https.onRequest((request, response) => {
+//   functions.logger.info("Hello logs!", {structuredData: true});
+//   response.send("Hello from Firebase!");
+// });
