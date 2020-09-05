@@ -1,48 +1,51 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { Observable } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 import { first } from "rxjs/operators";
 import { AngularFireFunctions } from "@angular/fire/functions";
 import { UIService } from "../shared/ui.service";
 import { Router } from "@angular/router";
 import { Login } from "../shared/interfaces/login";
+import { User } from "../shared/interfaces/user";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthenticationService {
-  userData: Observable<firebase.User>;
-
-
   
+  
+  userData: Observable<firebase.User>;
+  private user:User;
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
+
   constructor(
     private afAuth: AngularFireAuth,
     private cloudFunctions: AngularFireFunctions,
-     private uiService: UIService,
+    private uiService: UIService,
     private router: Router
   ) {
+
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem("currentUser")));
+    this.currentUser = this.currentUserSubject.asObservable();
+
+
     this.userData = afAuth.authState;
     //check when the user logout or login
 
     //to monitor user state
     afAuth.onAuthStateChanged(function(user) {
-
       if (user) {
-        // User is signed in.
-        //  console.log("User signed in", user);
-        //user.getIdToken().then(function(data) {
-          //console.log("data => ", data);
-        //});
-      
-                console.log("user => ", data);
+
+        newUser: User = null;
 
         user.getIdTokenResult().then(idTokenResult => {
-          console.log("idTokenResult => ", idTokenResult);
-          console.log("Claims admin => ", idTokenResult.claims.admin);
-        });
+        console.log("idTokenResult => ", idTokenResult);
+        console.log("Claims admin => ", idTokenResult.claims.admin);
+         
 
-
-
+         
+         });
       } else {
         // No user is signed in.
         // console.log("No user is signed in", user);
@@ -50,7 +53,12 @@ export class AuthenticationService {
     });
   }
 
-  
+
+//  public get currentUserValue(): User {
+//     return this.currentUserSubject.value;
+//   }
+
+
 
   /* Sign up */
   signUp(email: string, password: string) {
@@ -64,30 +72,31 @@ export class AuthenticationService {
       });
   }
 
-
   /* Sign in */
   signIn(login: Login) {
-    
     console.log("signin");
     this.afAuth
       .signInWithEmailAndPassword(login.email, login.password)
       .then(res => {
+        console.log(" res=> ",res);
         console.log("Successfully signed in!");
 
+        //const user = new User(decodedJwtData.sub, res, decodedJwtData.role, decodedJwtData.permissions);
+
+        // this.currentUserSubject.next(user);
+        //sessionStorage.setItem('currentUser', JSON.stringify(user));
+
         this.router.navigate(["/"]);
-  
       })
       .catch(err => {
         console.log("Something is wrong:", err.message);
       });
   }
 
-
-
   getUserProfile() {
     // var user = this.afAuth.currentUser;
     var user = this.afAuth.authState.pipe(first()).toPromise();
-   // var user2 = this.authenticated ? this.authState : null;
+    // var user2 = this.authenticated ? this.authState : null;
     //console.log("USER2 => ", user2);
 
     if (user != null) {
@@ -97,6 +106,8 @@ export class AuthenticationService {
       console.log("USER => is Loggedout");
     }
   }
+
+
 
 
 
@@ -122,7 +133,6 @@ export class AuthenticationService {
     });
   }
 
-
   convertToAdmin(emailAdmin: string) {
     const callable = this.cloudFunctions.httpsCallable("addAdminRole");
     callable({ email: emailAdmin }).subscribe(response => {
@@ -130,8 +140,6 @@ export class AuthenticationService {
       // to get user claim
     });
   }
-
-
 
   getProfileData() {
     this.afAuth.currentUser.then(user => {
@@ -144,7 +152,6 @@ export class AuthenticationService {
   }
 
   updateEmailProfile() {
-
     this.afAuth.currentUser.then(user => {
       if (user != null) {
         user
@@ -163,8 +170,6 @@ export class AuthenticationService {
     });
   }
 
-
-
   verifyUser() {
     this.afAuth.currentUser.then(user => {
       if (user != null) {
@@ -182,7 +187,6 @@ export class AuthenticationService {
       }
     });
   }
-
 
   deleteUser() {
     this.afAuth.currentUser.then(user => {
@@ -218,18 +222,17 @@ export class AuthenticationService {
     });
   }
 
-
   /* Sign out */
   logout() {
     this.afAuth
       .signOut()
       .then(function() {
-       
         //alert("User signed out!");
-         
-         this.uiService.isOpen = false;
-         this.router.navigate(["/login"]);
-      
+        sessionStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
+        
+        this.uiService.isOpen = false;
+        this.router.navigate(["/login"]);
       })
       .catch(function(error) {
         // alert("Something went wrong!");
