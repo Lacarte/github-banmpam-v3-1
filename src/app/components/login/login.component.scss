@@ -77,7 +77,7 @@
 
 /* input color class */
 ::ng-deep input.mat-input-element {
-  color: #c2c2c5;
+  color: #ffffff;
 }
 
 /* Change label color on focused */
@@ -98,7 +98,7 @@
 
 ::ng-deep .mat-form-field-appearance-legacy  .mat-form-field-underline {
       color: #c2c2c5 !important;
-    // background-color: #c2c2c5;
+    background-color: #6b6a6a;
 }
 
 
@@ -150,3 +150,29 @@
 .show-lt-sm{
   display: block;
 }
+
+
+input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px #474A59 inset; /* Change the color to your own background color */
+    -webkit-text-fill-color: rgb(255, 255, 255);
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px #474A59 inset;/*your box-shadow*/
+    -webkit-text-fill-color: rgb(255, 255, 255);
+} 
+
+ ::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  // color: #707070 !important;
+ }
+
+ ::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  // background-color: #707070 !important;
+} 
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: #707070 !important;;
+// }
