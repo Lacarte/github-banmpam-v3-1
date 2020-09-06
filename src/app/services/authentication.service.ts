@@ -31,14 +31,45 @@ export class AuthenticationService {
       this.user$ = this.afAuth.authState.pipe(
         switchMap(user => {
             // Logged in
-          if (user) {
+        console.log("before user ", user);
+      if (user) {
+      console.log("afte user ", user);
             return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
           } else {
             // Logged out
             return of(null);
           }
         })
-      )
+      );
+
+
+
+    afAuth.onAuthStateChanged(function(user) {
+      //console.log("before user ", user);
+      if (user) {
+     // console.log("afte ruser ", user);
+
+        // user.getIdTokenResult().then(idTokenResult => {
+        //   console.log("idTokenResult => ", idTokenResult);
+        //   console.log("Claims admin => ", idTokenResult.claims.admin);
+        // });
+
+      } else {
+        // No user is signed in.
+        //  console.log("No user is signed in", user);
+      }
+    });
+
+
+    this.afAuth.authState.subscribe(auth => {
+      /console.log("authState", auth);
+    });
+
+
+
+
+
+
   }
 
   //  public get currentUserValue(): User {
