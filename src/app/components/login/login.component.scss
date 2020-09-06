@@ -87,7 +87,7 @@
 
 /* underline border color on focused */
 ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
-  background-color: #c2c2c5 !important;
+  // background-color: #c2c2c5 !important;
 }
 
 
@@ -98,7 +98,7 @@
 
 ::ng-deep .mat-form-field-appearance-legacy  .mat-form-field-underline {
       color: #c2c2c5 !important;
-    background-color: #c2c2c5;
+    // background-color: #c2c2c5;
 }
 
 

@@ -22,9 +22,9 @@ export class UIService {
 
   set isLtMd(new_isLtMd: boolean) {
     if(new_isLtMd){
-      console.log("lt md");
+      //console.log("lt md");
     }else{
-         console.log("big");
+       //console.log("big");
    
     }
     this._isLtMd.next(new_isLtMd);
@@ -40,7 +40,7 @@ export class UIService {
   }
 
   set isOpen(new_isOpen: boolean) {
-    console.log('nav state',new_isOpen);
+    //console.log('nav state',new_isOpen);
     this._isOpen.next(new_isOpen);
   }
 

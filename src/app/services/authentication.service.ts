@@ -62,7 +62,7 @@ export class AuthenticationService {
 
 
     this.afAuth.authState.subscribe(auth => {
-      /console.log("authState", auth);
+      //console.log("authState", auth);
     });
 
 
