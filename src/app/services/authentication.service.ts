@@ -33,7 +33,7 @@ export class AuthenticationService {
             // Logged in
         console.log("before user ", user);
       if (user) {
-      console.log("afte user ", user);
+      console.log("after user ", user);
             return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
           } else {
             // Logged out
@@ -45,9 +45,9 @@ export class AuthenticationService {
 
 
     afAuth.onAuthStateChanged(function(user) {
-      //console.log("before user ", user);
+    //  console.log("before user ", user);
       if (user) {
-     // console.log("afte ruser ", user);
+    //  console.log("after ruser ", user);
 
         // user.getIdTokenResult().then(idTokenResult => {
         //   console.log("idTokenResult => ", idTokenResult);
@@ -62,7 +62,7 @@ export class AuthenticationService {
 
 
     this.afAuth.authState.subscribe(auth => {
-      //console.log("authState", auth);
+     / console.log("authState", auth);
     });
 
 
@@ -248,7 +248,7 @@ export class AuthenticationService {
       })
       .catch(function(error) {
         // alert("Something went wrong!");
-        console.log("Something went wrong!");
+        //console.log("Something went wrong!");
       });
   }
 }
