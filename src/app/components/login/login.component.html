@@ -24,7 +24,7 @@
 				<mat-form-field class="full-width-input mb-0">
 					<mat-label>Email</mat-label>
 
-					<input matInput name="email" type="email" required [(ngModel)]="login.email">
+					<input matInput name="email" type="email" value="carteasy@gmail.com" required [(ngModel)]="login.email">
 					<!-- <input matInput placeholder="User" formControlName="username" required> -->
 					<!-- <mat-error *ngIf="isFieldInvalid('userName')"> -->
 					<mat-error>
@@ -36,7 +36,7 @@
 
 					<mat-label>Password</mat-label>
 
-					<input matInput [type]="hide ? 'password' : 'text'" name="password" required [(ngModel)]="login.password">
+					<input matInput [type]="hide ? 'password' : 'text'" name="password"  required [(ngModel)]="login.password">
 					<!-- <input matInput type="password" placeholder="Password" formControlName="password" required> -->
 					<!-- <mat-error *ngIf="isFieldInvalid('userName')"> -->
 
